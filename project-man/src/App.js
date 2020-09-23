@@ -1,30 +1,33 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Home from "./components/Home";
 import Projects from "./components/Projects";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import Navbar from "./components/Navbar";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Clients from "./components/Clients";
+import Employees from "./components/Employees"; 
 
 function App() {
   return (
     <div>
-      <Container>
-        <BrowserRouter>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/projects">Projects</Link>
-            </li>
-          </ul>
-          <Switch>
-            <Route exact path="/" component={Home}></Route>
-            <Route exact path="/projects" component={Projects}></Route>
-          </Switch>
-        </BrowserRouter>
-      </Container>
+      <BrowserRouter>
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/projects">
+            <Projects />
+          </Route>
+          <Route exact path="/employees">
+            <Employees />
+          </Route>
+          <Route exact path="/clients">
+            <Clients />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
