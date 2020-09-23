@@ -1,16 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import ClientData from "../data/ClientData.json";
 
-const Clients = props => {
+const Clients = () => {
+
+
+
     return (
         <div>
             <h1>Clients</h1>
+            {ClientData.map((client) => {
+                return ( <ul>
+                    <li>
+                        {client.client}
+                    </li>
+                </ul>
+                );
+            })}
+
         </div>
-    );
+    )
 };
 
-Clients.propTypes = {
-    
-};
 
 export default Clients;
