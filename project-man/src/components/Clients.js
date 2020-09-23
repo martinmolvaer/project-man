@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ClientData from "../data/ClientData.json";
-import { Table, Row } from "react-bootstrap";
+import { Table, Row, Form } from "react-bootstrap";
 
 const Clients = () => {
   const [clients, setClients] = useState(ClientData);
@@ -17,13 +17,12 @@ const Clients = () => {
   };
 
   const addClient = () => {
-    setClients(()=>[newClient, ...clients]);
+    setClients(() => [newClient, ...clients]);
   };
 
   React.useEffect(() => {
-   console.log(clients)},[clients]
-  
-  )
+    console.log(clients);
+  }, [clients]);
 
   return (
     <div>
@@ -35,7 +34,7 @@ const Clients = () => {
       <input onChange={handleChange} name="contact_person"></input>
       <p>Email: </p>
       <input onChange={handleChange} name="email"></input>
-      <button onClick={addClient}>Add client</button>      
+      <button onClick={addClient}>Add client</button>
       <br></br>
       <Row className="mx-1">
         <Table striped bordered hover>

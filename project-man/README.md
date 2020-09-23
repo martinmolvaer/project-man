@@ -1,7 +1,7 @@
--Vise alle ansatte
+[X]-Vise alle ansatte
 -Legge til ansatt
--Vise oversikt over alle kunder
--Vise alle prosjekter og status på dem
+[X]-Vise oversikt over alle kunder
+[X] -Vise alle prosjekter og status på dem
 -Legge til prosjekt
 -Legge til ansatte på prosjekt
 -Vise et bestemt prosjekt
