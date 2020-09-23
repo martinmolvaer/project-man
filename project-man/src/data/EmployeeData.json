@@ -1,5 +1,4 @@
-[
-  {
+[{
     "id": 1,
     "first_name": "Fulton",
     "last_name": "Tibbles",
@@ -17,11 +16,10 @@
   },
   {
     "id": 3,
-    "first_name": "Jessamine",
+    "first_name": "Jessa",
     "last_name": "Smallacombe",
     "email": "jsmallacombe2@addthis.com",
-    "avatar":
-      "https://robohash.org/utnecessitatibustempore.png?size=50x50&set=set1",
+    "avatar": "https://robohash.org/utnecessitatibustempore.png?size=50x50&set=set1",
     "position": "Accounting Assistant II"
   },
   {
@@ -53,13 +51,12 @@
     "first_name": "Stefania",
     "last_name": "Bonnin",
     "email": "sbonnin6@deviantart.com",
-    "avatar":
-      "https://robohash.org/eligendilaboriosamest.png?size=50x50&set=set1",
+    "avatar": "https://robohash.org/eligendilaboriosamest.png?size=50x50&set=set1",
     "position": "Assistant Manager"
   },
   {
     "id": 8,
-    "first_name": "Elsworth",
+    "first_name": "El",
     "last_name": "Von Gladbach",
     "email": "evongladbach7@fda.gov",
     "avatar": "https://robohash.org/odioautemquas.png?size=50x50&set=set1",

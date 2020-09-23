@@ -6,11 +6,12 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Clients from "./components/Clients";
-import Employees from "./components/Employees"; 
+import Employees from "./components/Employees";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
-    <div>
+    <Container style={{ maxWidth: "1280px" }}>
       <BrowserRouter>
         <Navbar />
         <Switch>
@@ -28,7 +29,7 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
-    </div>
+    </Container>
   );
 }
 

@@ -2,7 +2,8 @@
 -Legge til ansatt
 -Vise oversikt over alle kunder
 -Vise alle prosjekter og status på dem
--Legge til prosjekt-Legge til ansatte på prosjekt
+-Legge til prosjekt
+-Legge til ansatte på prosjekt
 -Vise et bestemt prosjekt
 
 1.  Grid-systemet i React Bootstrap for å tilpasse til mobil, tablet og laptop-størrelser
