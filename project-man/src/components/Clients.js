@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import ClientData from "../data/ClientData.json";
-import { Table, Row } from "react-bootstrap";
+import { Table, Row, Form } from "react-bootstrap";
 
 const Clients = () => {
-    
-    
   const [clients, setClients] = useState(ClientData);
   const [newClient, setNewClient] = useState({
     name: "",
@@ -15,24 +13,15 @@ const Clients = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewClient({ ...newClient, [name]: value });
-};
-
-const addClient = () => {
-    setClients(client => [newClient, ...client ]) 
-    console.log(ClientData)
   };
 
-  const getClients = () => {
-    return clients.map((client, i) => {
-      return (
-        <li key={i}>
-          Client: <b>{client.name}</b>, Contact person:{" "}
-          <b>{client.contact_person}</b>
-          Email: <b>{client.email}</b>
-        </li>
-      );
-    });
+  const addClient = () => {
+    setClients(() => [newClient, ...clients]);
   };
+
+  React.useEffect(() => {
+    console.log(clients);
+  }, [clients]);
 
   return (
     <div>
@@ -45,9 +34,7 @@ const addClient = () => {
       <span>Email: </span>
       <input onChange={handleChange} name="email"></input>
       <button onClick={addClient}>Add client</button>
-      <br></br>
-      <ul>{getClients()}</ul>
-      <br></br>
+
       <Row className="mx-1">
         <Table striped bordered hover>
           <thead>
