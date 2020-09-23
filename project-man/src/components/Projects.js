@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import ProjectData from "../data/ProjectData.json";
 import { Card, Row, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const Projects = () => {
+const Projects = ({ project }) => {
   const [projects, setProjects] = useState(ProjectData);
   const [newProject, setNewProject] = useState({
     name: "",
