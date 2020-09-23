@@ -3,10 +3,9 @@ import ClientData from "../data/ClientData.json";
 import { Table, Row } from "react-bootstrap";
 
 const Clients = () => {
-    
-    
   const [clients, setClients] = useState(ClientData);
   const [newClient, setNewClient] = useState({
+    id: "",
     name: "",
     contact_person: "",
     email: "",
@@ -15,38 +14,28 @@ const Clients = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewClient({ ...newClient, [name]: value });
-};
-
-const addClient = () => {
-    setClients(client => [newClient, ...client ]) 
-    console.log(ClientData)
   };
 
-  const getClients = () => {
-    return clients.map((client, i) => {
-      return (
-        <li key={i}>
-          Client: <b>{client.name}</b>, Contact person:{" "}
-          <b>{client.contact_person}</b>
-          Email: <b>{client.email}</b>
-        </li>
-      );
-    });
+  const addClient = () => {
+    setClients(()=>[newClient, ...clients]);
   };
+
+  React.useEffect(() => {
+   console.log(clients)},[clients]
+  
+  )
 
   return (
     <div>
       <h3>Add new client</h3>
 
-      <span>Client: </span>
+      <p>Client: </p>
       <input onChange={handleChange} name="name"></input>
-      <span>Contact person: </span>
+      <p>Contact person: </p>
       <input onChange={handleChange} name="contact_person"></input>
-      <span>Email: </span>
+      <p>Email: </p>
       <input onChange={handleChange} name="email"></input>
-      <button onClick={addClient}>Add client</button>
-      <br></br>
-      <ul>{getClients()}</ul>
+      <button onClick={addClient}>Add client</button>      
       <br></br>
       <Row className="mx-1">
         <Table striped bordered hover>
@@ -57,9 +46,9 @@ const addClient = () => {
               <th>Email</th>
             </tr>
           </thead>
-          {clients.map((client) => {
+          {clients.map((client, i) => {
             return (
-              <tbody>
+              <tbody key={i}>
                 <tr>
                   <td>{client.name}</td>
                   <td>{client.contact_person}</td>
