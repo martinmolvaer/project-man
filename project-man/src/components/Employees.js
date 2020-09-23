@@ -1,7 +1,7 @@
 import React from "react";
 import EmployeeData from "../data/EmployeeData.json";
-import Image from "react";
-import { Card, Row, Container, Col } from "react-bootstrap";
+
+import { Card, Row, Container} from "react-bootstrap";
 
 const Employees = () => {
   return (
@@ -20,7 +20,7 @@ const Employees = () => {
               <Card.Body>
                 <Card.Title>
                   {employee.first_name} {employee.last_name}
-                  <img style={{ cardImage: "right" }} src={employee.avatar} />
+                  <img  alt="" style={{ cardImage: "right" }} src={employee.avatar} />
                 </Card.Title>
 
                 <Card.Text>Email: {employee.email}</Card.Text>

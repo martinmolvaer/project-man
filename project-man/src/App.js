@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Home from "./components/Home";
 import Projects from "./components/Projects";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Clients from "./components/Clients";
