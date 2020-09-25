@@ -1,14 +1,39 @@
-import React from "react";
-
+import React, { useState } from "react";
 import ProjectData from "../data/ProjectData.json";
 import { Card, Row, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const Projects = () => {
+const Projects = ({ project }) => {
+  const [projects, setProjects] = useState(ProjectData);
+  const [newProject, setNewProject] = useState({
+    name: "",
+    status: "",
+    description: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewProject({ ...newProject, [name]: value });
+  };
+
+  const addProject = () => {
+    setProjects(() => [newProject, ...projects]);
+  };
+
   return (
     <div>
       <Container style={{ maxWidth: "1280px" }}>
+        <h3>Add new Project</h3>
+
+        <span>Project: </span>
+        <input onChange={handleChange} name="name"></input>
+        <span>Status: </span>
+        <input onChange={handleChange} name="status"></input>
+        <span>Description: </span>
+        <input onChange={handleChange} name="description"></input>
+        <button onClick={addProject}>Add Project</button>
         <Row style={{ display: "flex", justifyContent: "center" }}>
-          {ProjectData.map((project) => {
+          {projects.map((project) => {
             return (
               <Card
                 style={{
@@ -30,6 +55,7 @@ const Projects = () => {
               </Card>
             );
           })}
+          ;
         </Row>
       </Container>
     </div>
