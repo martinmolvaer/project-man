@@ -1,8 +1,12 @@
+Project-man gruppe:
+
+Per-Kristian Vinje og Martin Molvær
+
 [X]-Vise alle ansatte
 -Legge til ansatt
 [X]-Vise oversikt over alle kunder
 [X] -Vise alle prosjekter og status på dem
--Legge til prosjekt
+[X]Legge til prosjekt
 -Legge til ansatte på prosjekt
 -Vise et bestemt prosjekt
 
