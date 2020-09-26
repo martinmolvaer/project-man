@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import EmployeeData from "../data/EmployeeData.json";
+import React, { useState, useContext } from "react";
+
+import { ProjectContext } from "../context/ProjectContext";
 
 import { Card, Row, Container, Modal, Form, Button } from "react-bootstrap";
 
 const Employees = () => {
-  const [employees, setEmployees] = useState(EmployeeData);
+  const { employees, addEmployee } = useContext(ProjectContext);
   const [newEmployee, setNewEmployee] = useState({
     first_name: "",
     last_name: "",
@@ -21,30 +22,26 @@ const Employees = () => {
     setNewEmployee({ ...newEmployee, [name]: value });
   };
 
-  const addEmployee = () => {
-    setEmployees(() => [newEmployee, ...employees]);
+  const addNewEmployee = () => {
     setShow(false);
+    addEmployee({ ...newEmployee, id: Math.floor(Math.random() * 100) });
   };
-
-  React.useEffect(() => {
-    console.log(employees);
-  }, [employees]);
 
   return (
     <div>
-      <div >
-      <h3 style={{margin: "1rem", textAlign: "center"}}>Employees</h3>
+      <div>
+        <h3 style={{ margin: "1rem", textAlign: "center" }}>Employees</h3>
       </div>
 
-      <div style={{display: "flex", justifyContent: "center"}}>
-      <Button
-        style={{ border: "2px solid black" }}
-        variant="light"
-        onClick={handleShow}
-      >
-        Add new employee
-      </Button>
-</div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Button
+          style={{ border: "2px solid black" }}
+          variant="light"
+          onClick={handleShow}
+        >
+          Add new employee
+        </Button>
+      </div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add employee</Modal.Title>
@@ -92,7 +89,7 @@ const Employees = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={addEmployee}>
+          <Button variant="primary" onClick={addNewEmployee}>
             Add employee
           </Button>
         </Modal.Footer>

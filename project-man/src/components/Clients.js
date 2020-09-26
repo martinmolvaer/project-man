@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import ClientData from "../data/ClientData.json";
+import React, { useState, useContext } from "react";
+
 import { Table, Row, Form, Button, Modal } from "react-bootstrap";
+import { ProjectContext } from "../context/ProjectContext";
 
 const Clients = () => {
-  const [clients, setClients] = useState(ClientData);
+  const { clients, addClient } = useContext(ProjectContext);
   const [newClient, setNewClient] = useState({
     id: "",
     name: "",
@@ -20,30 +21,26 @@ const Clients = () => {
     setNewClient({ ...newClient, [name]: value });
   };
 
-  const addClient = () => {
-    setClients(() => [newClient, ...clients]);
+  const addNewClient = () => {
     setShow(false);
+    addClient({ ...newClient });
   };
-
-  React.useEffect(() => {
-    console.log(clients);
-  }, [clients]);
 
   return (
     <div>
-        <div >
-      <h3 style={{margin: "1rem", textAlign: "center"}}>Clients</h3>
+      <div>
+        <h3 style={{ margin: "1rem", textAlign: "center" }}>Clients</h3>
       </div>
 
-      <div style={{display: "flex", justifyContent: "center"}}>
-      <Button
-        style={{ border: "2px solid black" }}
-        variant="light"
-        onClick={handleShow}
-      >
-        Add new client
-      </Button>
-</div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Button
+          style={{ border: "2px solid black" }}
+          variant="light"
+          onClick={handleShow}
+        >
+          Add new client
+        </Button>
+      </div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add client</Modal.Title>
@@ -82,12 +79,11 @@ const Clients = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={addClient}>
+          <Button variant="primary" onClick={addNewClient}>
             Add client
           </Button>
         </Modal.Footer>
       </Modal>
-
 
       <Row className="mx-1 mt-3">
         <Table striped bordered hover>
@@ -111,7 +107,7 @@ const Clients = () => {
           })}
         </Table>
       </Row>
-        <p># of clients: {clients.length}</p>
+      <p># of clients: {clients.length}</p>
     </div>
   );
 };

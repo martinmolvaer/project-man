@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import ProjectData from "../data/ProjectData.json";
-import { Card, Row, Container, Form, Modal, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+
+import { Row, Container, Form, Modal, Button } from "react-bootstrap";
+import ProjectCard from "./ProjectCard";
+import { ProjectContext } from "../context/ProjectContext";
 
 const Projects = () => {
-  const [projects, setProjects] = useState(ProjectData);
+  const { projects, addProject } = useContext(ProjectContext);
   const [newProject, setNewProject] = useState({
     name: "",
     status: "",
@@ -21,26 +22,26 @@ const Projects = () => {
     setNewProject({ ...newProject, [name]: value });
   };
 
-  const addProject = () => {
+  const addNewProject = () => {
     setShow(false);
-    setProjects(() => [newProject, ...projects]);
+    addProject({ ...newProject, id: Math.floor(Math.random() * 100) });
   };
 
   return (
     <div>
-      <div >
-      <h3 style={{margin: "1rem", textAlign: "center"}}>Projects</h3>
+      <div>
+        <h3 style={{ margin: "1rem", textAlign: "center" }}>Projects</h3>
       </div>
 
-      <div style={{display: "flex", justifyContent: "center"}}>
-      <Button
-        style={{ border: "2px solid black" }}
-        variant="light"
-        onClick={handleShow}
-      >
-        Add new project
-      </Button>
-</div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Button
+          style={{ border: "2px solid black" }}
+          variant="light"
+          onClick={handleShow}
+        >
+          Add new project
+        </Button>
+      </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -50,27 +51,25 @@ const Projects = () => {
           <Form>
             <Form.Group controlId="formBasicText">
               <Form.Control
-              
                 onChange={handleChange}
                 name="name"
                 type="text"
-                placeholder="Project name">
-              
-              </Form.Control>
+                placeholder="Project name"
+              ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="ControlSelect2">
               <Form.Control
-              as="select" 
+                as="select"
                 onChange={handleChange}
                 name="status"
                 type="text"
                 placeholder="Status"
               >
                 <option>Not started</option>
-              <option>In progress</option>
-              <option>Done</option>
-                </Form.Control>
+                <option>In progress</option>
+                <option>Done</option>
+              </Form.Control>
             </Form.Group>
 
             <Form.Group controlId="formBasicEmail">
@@ -87,7 +86,7 @@ const Projects = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={addProject}>
+          <Button variant="primary" onClick={addNewProject}>
             Add project
           </Button>
         </Modal.Footer>
@@ -96,28 +95,8 @@ const Projects = () => {
       <Container style={{ maxWidth: "1280px" }}>
         <Row style={{ display: "flex", justifyContent: "center" }}>
           {projects.map((project) => {
-            return (
-              <Card
-                style={{
-                  width: "18rem",
-                  marginRight: "1rem",
-                  marginBottom: "1rem",
-                  marginTop: "1rem",
-                }}
-              >
-                <Card.Body>
-                  
-                    <Card.Title>{project.name}</Card.Title>
-                  
-
-                  <Card.Text>{project.description}</Card.Text>
-                  <Card.Subtitle>{project.position}</Card.Subtitle>
-                </Card.Body>
-                <Card.Footer>{project.status}</Card.Footer>
-              </Card>
-            );
+            return <ProjectCard project={project} />;
           })}
-          ;
         </Row>
       </Container>
     </div>
