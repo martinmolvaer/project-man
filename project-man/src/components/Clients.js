@@ -31,12 +31,19 @@ const Clients = () => {
 
   return (
     <div>
-      <h3>Add new client</h3>
+        <div >
+      <h3 style={{margin: "1rem", textAlign: "center"}}>Clients</h3>
+      </div>
 
-      <Button variant="primary" onClick={handleShow}>
+      <div style={{display: "flex", justifyContent: "center"}}>
+      <Button
+        style={{ border: "2px solid black" }}
+        variant="light"
+        onClick={handleShow}
+      >
         Add new client
       </Button>
-
+</div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add client</Modal.Title>
@@ -81,7 +88,8 @@ const Clients = () => {
         </Modal.Footer>
       </Modal>
 
-      <Row className="mx-1">
+
+      <Row className="mx-1 mt-3">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -103,6 +111,7 @@ const Clients = () => {
           })}
         </Table>
       </Row>
+        <p># of clients: {clients.length}</p>
     </div>
   );
 };

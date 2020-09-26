@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ProjectData from "../data/ProjectData.json";
-import { Card, Row, Container } from "react-bootstrap";
+import { Card, Row, Container, Form, Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Projects = ({ project }) => {
+const Projects = () => {
   const [projects, setProjects] = useState(ProjectData);
   const [newProject, setNewProject] = useState({
     name: "",
@@ -11,27 +11,89 @@ const Projects = ({ project }) => {
     description: "",
   });
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProject({ ...newProject, [name]: value });
   };
 
   const addProject = () => {
+    setShow(false);
     setProjects(() => [newProject, ...projects]);
   };
 
   return (
     <div>
-      <Container style={{ maxWidth: "1280px" }}>
-        <h3>Add new Project</h3>
+      <div >
+      <h3 style={{margin: "1rem", textAlign: "center"}}>Projects</h3>
+      </div>
 
-        <span>Project: </span>
-        <input onChange={handleChange} name="name"></input>
-        <span>Status: </span>
-        <input onChange={handleChange} name="status"></input>
-        <span>Description: </span>
-        <input onChange={handleChange} name="description"></input>
-        <button onClick={addProject}>Add Project</button>
+      <div style={{display: "flex", justifyContent: "center"}}>
+      <Button
+        style={{ border: "2px solid black" }}
+        variant="light"
+        onClick={handleShow}
+      >
+        Add new project
+      </Button>
+</div>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add project</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formBasicText">
+              <Form.Control
+              
+                onChange={handleChange}
+                name="name"
+                type="text"
+                placeholder="Project name">
+              
+              </Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId="ControlSelect2">
+              <Form.Control
+              as="select" 
+                onChange={handleChange}
+                name="status"
+                type="text"
+                placeholder="Status"
+              >
+                <option>Not started</option>
+              <option>In progress</option>
+              <option>Done</option>
+                </Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId="formBasicEmail">
+              <Form.Control
+                onChange={handleChange}
+                name="description"
+                type="text"
+                placeholder="Enter description"
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={addProject}>
+            Add project
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Container style={{ maxWidth: "1280px" }}>
         <Row style={{ display: "flex", justifyContent: "center" }}>
           {projects.map((project) => {
             return (
@@ -44,9 +106,9 @@ const Projects = ({ project }) => {
                 }}
               >
                 <Card.Body>
-                  <Card.Header>
+                  
                     <Card.Title>{project.name}</Card.Title>
-                  </Card.Header>
+                  
 
                   <Card.Text>{project.description}</Card.Text>
                   <Card.Subtitle>{project.position}</Card.Subtitle>
