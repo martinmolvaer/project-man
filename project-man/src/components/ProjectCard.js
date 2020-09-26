@@ -12,6 +12,7 @@ const ProjectCard = ({ project }) => {
       <Card
         style={{
           width: "18rem",
+          height: "15rem",
           marginRight: "1rem",
           marginBottom: "1rem",
           marginTop: "1rem",
