@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffet } from "react";
+import { Button, Modal, Form } from "react-bootstrap";
 import ClientData from "../data/ClientData.json";
-import { Table, Row, Form, Button, Modal } from "react-bootstrap";
 
-const Clients = () => {
+const AddClientModal = (props) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const [clients, setClients] = useState(ClientData);
   const [newClient, setNewClient] = useState({
     name: "",
     contact_person: "",
     email: "",
   });
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,8 +21,8 @@ const Clients = () => {
   };
 
   const addClient = () => {
-    setClients(() => [newClient, ...clients]);
     setShow(false);
+    setClients(() => [newClient, ...clients]);
   };
 
   React.useEffect(() => {
@@ -29,11 +30,9 @@ const Clients = () => {
   }, [clients]);
 
   return (
-    <div>
-      <h3>Add new client</h3>
-
+    <>
       <Button variant="primary" onClick={handleShow}>
-        Add new client
+        Launch demo modal
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -67,6 +66,9 @@ const Clients = () => {
                 type="email"
                 placeholder="Enter email"
               />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -79,31 +81,8 @@ const Clients = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
-      <Row className="mx-1">
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Client</th>
-              <th>Contact</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          {clients.map((client) => {
-            return (
-              <tbody>
-                <tr>
-                  <td>{client.name}</td>
-                  <td>{client.contact_person}</td>
-                  <td>{client.email}</td>
-                </tr>
-              </tbody>
-            );
-          })}
-        </Table>
-      </Row>
-    </div>
+    </>
   );
 };
 
-export default Clients;
+export default AddClientModal;
