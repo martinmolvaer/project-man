@@ -24,6 +24,13 @@ const Clients = () => {
   const addNewClient = () => {
     setShow(false);
     addClient({ ...newClient });
+    setNewClient({
+      id: "",
+      name: "",
+      contact_person: "",
+      email: "",
+    });
+    console.log(clients);
   };
 
   return (
@@ -79,7 +86,7 @@ const Clients = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={addNewClient}>
+          <Button variant="primary" type="submit" onClick={addNewClient}>
             Add client
           </Button>
         </Modal.Footer>

@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, Row, Col, Container, CardDeck } from "react-bootstrap";
+import { Card, Row, Col, Container, CardDeck, Badge } from "react-bootstrap";
 import { ArrowRight, Briefcase, Folder, User } from "react-feather";
+import { ProjectContext } from "../context/ProjectContext";
 
 const Home = () => {
+  const { clients, projects, employees } = useContext(ProjectContext);
   return (
     <div>
-    
       <Container>
         <Row>
           <Col
@@ -31,7 +32,10 @@ const Home = () => {
                 >
                   <Card.Img variant="top" />
                   <Card.Body>
-                    <Card.Title>Projects</Card.Title>
+                    <Card.Title>
+                      Projects{" "}
+                      <Badge variant="secondary">{projects.length}</Badge>
+                    </Card.Title>
                     <Card.Text>Full list of all your projects</Card.Text>
                     <Folder />
                   </Card.Body>
@@ -52,7 +56,10 @@ const Home = () => {
                 >
                   <Card.Img variant="top" />
                   <Card.Body>
-                    <Card.Title>Clients</Card.Title>
+                    <Card.Title>
+                      Clients{" "}
+                      <Badge variant="secondary">{clients.length}</Badge>
+                    </Card.Title>
                     <Card.Text>Full overview over all your clients</Card.Text>
                     <Briefcase />
                   </Card.Body>
@@ -74,7 +81,10 @@ const Home = () => {
                 >
                   <Card.Img variant="top" />
                   <Card.Body>
-                    <Card.Title>Employees</Card.Title>
+                    <Card.Title>
+                      Employees{" "}
+                      <Badge variant="secondary">{employees.length}</Badge>
+                    </Card.Title>
                     <Card.Text>Full overview over all employees</Card.Text>
                     <User />
                   </Card.Body>
