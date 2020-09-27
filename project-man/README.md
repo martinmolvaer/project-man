@@ -3,12 +3,12 @@ Project-man gruppe:
 Per-Kristian Vinje og Martin Molvær
 
 [X]-Vise alle ansatte
--Legge til ansatt
+[X]Legge til ansatt
 [X]-Vise oversikt over alle kunder
 [X] -Vise alle prosjekter og status på dem
 [X]Legge til prosjekt
 -Legge til ansatte på prosjekt
--Vise et bestemt prosjekt
+[X]Vise et bestemt prosjekt
 
 1.  Grid-systemet i React Bootstrap for å tilpasse til mobil, tablet og laptop-størrelser
 2.  Router for å navigere mellom nettsidene.
