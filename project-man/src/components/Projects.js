@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import { Row, Container, Form, Modal, Button } from "react-bootstrap";
+import { Row, Container, Form, Modal, Button, Toast } from "react-bootstrap";
 import ProjectCard from "./ProjectCard";
 import { ProjectContext } from "../context/ProjectContext";
 
@@ -11,6 +11,9 @@ const Projects = () => {
     status: "",
     description: "",
   });
+  const [showToast, setShowToast] = useState(false);
+
+  const toggleShowToast = () => setShowToast(!showToast);
 
   const [show, setShow] = useState(false);
 
@@ -25,6 +28,7 @@ const Projects = () => {
   const addNewProject = () => {
     setShow(false);
     addProject({ ...newProject, id: Math.floor(Math.random() * 100) });
+    setShowToast(true);
   };
 
   return (
@@ -93,6 +97,18 @@ const Projects = () => {
       </Modal>
 
       <Container style={{ maxWidth: "1280px" }}>
+        <Toast delay={3000} autohide show={showToast} onClose={toggleShowToast}>
+          <Toast.Header>
+            <img
+              src="holder.js/20x20?text=%20"
+              className="rounded mr-2"
+              alt=""
+            />
+            <strong className="mr-auto">Project Man</strong>
+            <small>1 sec ago</small>
+          </Toast.Header>
+          <Toast.Body>New project created!</Toast.Body>
+        </Toast>
         <Row style={{ display: "flex", justifyContent: "center" }}>
           {projects.map((project) => {
             return <ProjectCard project={project} />;
