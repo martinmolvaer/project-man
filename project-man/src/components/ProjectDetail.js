@@ -9,7 +9,7 @@ import EmployeeCard from "./EmployeeCard";
 const ProjectDetail = () => {
   const { projects, addEmployeeToProject } = useContext(ProjectContext);
   const { employees, addEmployee } = useContext(ProjectContext);
-  const [newEmployeeId, setNewEmployeeId] = useState();
+  const [newEmployeeId, setNewEmployeeId] = useState("");
   let { id } = useParams();
 
   const handleChange = (e) => {

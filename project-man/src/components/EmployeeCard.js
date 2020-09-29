@@ -1,13 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { ProjectContext } from "../context/ProjectContext";
-
-const EmployeeCard = ({ employee, project }) => {
-  const { projects } = useContext(ProjectContext);
+const EmployeeCard = ({ employee }) => {
   console.log(employee);
   return (
     <div>
-      {/* <li style={{ listStyleType: "square" }}>{employee.first_name}</li> */}
+      <li style={{ listStyleType: "square" }}>{employee.first_name}</li>
     </div>
   );
 };
