@@ -19,6 +19,7 @@ const ProjectDetail = () => {
   };
 
   const addNewEmployee = () => {
+    if (!newEmployeeId) return;
     setShow(false);
     addEmployeeToProject(Number(id), Number(newEmployeeId));
   };
@@ -48,14 +49,18 @@ const ProjectDetail = () => {
             <br></br>
             <Card.Text>
               <Card.Title>Employees:</Card.Title>
-              {project.employeeId.map((employee) => {
-                const projectEmployee = employees.filter(
-                  (detail) => detail.id === employee
-                )[0];
-                return (
-                  <EmployeeCard employee={projectEmployee} project={project} />
-                );
-              })}
+              {project.employeeId.length > 0 &&
+                project.employeeId.map((employee) => {
+                  const projectEmployee = employees.filter(
+                    (detail) => detail.id === employee
+                  )[0];
+                  return (
+                    <EmployeeCard
+                      employee={projectEmployee}
+                      project={project}
+                    />
+                  );
+                })}
             </Card.Text>
             <Button
               style={{ border: "2px solid black" }}
@@ -78,7 +83,9 @@ const ProjectDetail = () => {
                       type="text"
                       placeholder="First name"
                     >
-                      {" "}
+                      <option selected disabled>
+                        Velg en ansatt
+                      </option>{" "}
                       {employees.map((employee) => {
                         return (
                           <option value={employee.id}>

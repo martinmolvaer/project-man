@@ -11,6 +11,7 @@ const Projects = () => {
     name: "",
     status: "",
     description: "",
+    employeeId: [],
   });
   const [showToast, setShowToast] = useState(false);
 
