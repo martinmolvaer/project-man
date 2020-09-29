@@ -35,6 +35,16 @@ const Projects = () => {
     <div>
       <div>
         <h3 style={{ margin: "1rem", textAlign: "center" }}>Projects</h3>
+        <div style={{ position: "absolute", paddingLeft: "1rem" }}>
+          <Toast
+            delay={3000}
+            autohide
+            show={showToast}
+            onClose={toggleShowToast}
+          >
+            <Toast.Body>New project created!</Toast.Body>
+          </Toast>
+        </div>
       </div>
 
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -97,18 +107,6 @@ const Projects = () => {
       </Modal>
 
       <Container style={{ maxWidth: "1280px" }}>
-        <Toast delay={3000} autohide show={showToast} onClose={toggleShowToast}>
-          <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded mr-2"
-              alt=""
-            />
-            <strong className="mr-auto">Project Man</strong>
-            <small>1 sec ago</small>
-          </Toast.Header>
-          <Toast.Body>New project created!</Toast.Body>
-        </Toast>
         <Row style={{ display: "flex", justifyContent: "center" }}>
           {projects.map((project) => {
             return <ProjectCard project={project} />;

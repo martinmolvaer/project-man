@@ -100,6 +100,7 @@ const Employees = () => {
           {employees.map((employee) => {
             return (
               <Card
+                className="cardeffect"
                 style={{
                   width: "18rem",
                   marginRight: "1rem",

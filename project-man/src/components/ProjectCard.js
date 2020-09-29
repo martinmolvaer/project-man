@@ -10,6 +10,7 @@ const ProjectCard = ({ project }) => {
       key={project.id}
     >
       <Card
+        className="cardeffect"
         style={{
           width: "18rem",
           height: "15rem",
@@ -26,7 +27,7 @@ const ProjectCard = ({ project }) => {
         <Card.Footer>
           {project.status}
           <br></br>
-          Employees: {project.employeeId}
+          Employees: {project.project_employees}
         </Card.Footer>
       </Card>
     </Link>

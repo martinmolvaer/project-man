@@ -22,6 +22,7 @@ const Home = () => {
             <CardDeck>
               <Link to="/projects" style={{ textDecoration: "none" }}>
                 <Card
+                  className="cardeffect"
                   bg="dark"
                   text="light"
                   style={{
@@ -46,6 +47,7 @@ const Home = () => {
               </Link>
               <Link to="/clients" style={{ textDecoration: "none" }}>
                 <Card
+                  className="cardeffect"
                   bg="dark"
                   text="light"
                   style={{
@@ -71,6 +73,7 @@ const Home = () => {
               <Link to="/employees" style={{ textDecoration: "none" }}>
                 {" "}
                 <Card
+                  className="cardeffect"
                   bg="dark"
                   text="light"
                   style={{
