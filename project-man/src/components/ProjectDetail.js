@@ -4,10 +4,30 @@ import { Row, Col, Card, Button, Form, Modal } from "react-bootstrap";
 import { ProjectContext } from "../context/ProjectContext";
 import { ArrowLeft } from "react-feather";
 import { Link } from "react-router-dom";
-import Employees from "./Employees";
+import EmployeeCard from "./EmployeeCard";
 
 const ProjectDetail = () => {
   const { projects } = useContext(ProjectContext);
+  const { employees, addEmployee } = useContext(ProjectContext);
+  const [newEmployee, setNewEmployee] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    position: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewEmployee({ ...newEmployee, [name]: value });
+  };
+
+  const addNewEmployee = () => {
+    setShow(false);
+    addEmployee({
+      ...newEmployee,
+      id: Math.floor(Math.random() * 100),
+    });
+  };
 
   const [show, setShow] = useState(false);
 
@@ -17,13 +37,14 @@ const ProjectDetail = () => {
   const handleShow = () => setShow(true);
 
   const project = projects.filter((detail) => detail.id === Number(id))[0];
+  const employee = employees.filter((detail) => detail.id === Number(id))[0];
 
   console.log(project);
 
   return (
     <Row>
       <Col style={{ display: "flex", justifyContent: "center" }}>
-        <Card style={{ width: "600px", marginTop: "5rem", height: "300px" }}>
+        <Card style={{ width: "600px", marginTop: "5rem" }}>
           <Card.Title style={{ marginLeft: "1,5rem", marginTop: "1rem" }}>
             <Link to="/projects">
               <ArrowLeft style={{ marginLeft: "1rem", marginRight: "1rem" }} />
@@ -31,24 +52,41 @@ const ProjectDetail = () => {
             Project Name: {project.name}{" "}
           </Card.Title>
           <Card.Body>
+            <Card.Title>Description:</Card.Title>
+            <Card.Text>{project.description}</Card.Text>
+            <br></br>
             <Card.Text>
-              Description: <br></br>
-              {project.description}
+              <Card.Title>Employees:</Card.Title>
+              {employees.map((employee) => {
+                return <EmployeeCard employee={employee} project={project} />;
+              })}
             </Card.Text>
-            <Card.Text>Employees: </Card.Text>
-            <Button onClick={handleShow}>Add employee to project</Button>
+            <Button
+              style={{ border: "2px solid black" }}
+              variant="light"
+              onClick={handleShow}
+            >
+              Add employee to project
+            </Button>
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Add project</Modal.Title>
+                <Modal.Title>Add employee</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Form>
                   <Form.Group controlId="formBasicText">
                     <Form.Control
-                      name="name"
+                      as="select"
+                      onChange={handleChange}
+                      name="first_name"
                       type="text"
-                      placeholder="Employee name"
-                    ></Form.Control>
+                      placeholder="First name"
+                    >
+                      {" "}
+                      {employees.map((employee) => {
+                        return <option>{employee.first_name}</option>;
+                      })}
+                    </Form.Control>
                   </Form.Group>
                 </Form>
               </Modal.Body>
@@ -56,7 +94,9 @@ const ProjectDetail = () => {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="primary">Add employee</Button>
+                <Button variant="primary" onClick={addNewEmployee}>
+                  Add employee
+                </Button>
               </Modal.Footer>
             </Modal>
           </Card.Body>

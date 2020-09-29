@@ -111,11 +111,7 @@ const Employees = () => {
                 <Card.Body>
                   <Card.Title>
                     {employee.first_name} {employee.last_name}
-                    <img
-                      alt=""
-                      style={{ cardImage: "right" }}
-                      src={employee.avatar}
-                    />
+                    <img alt="" src={employee.avatar} />
                   </Card.Title>
 
                   <Card.Text>Email: {employee.email}</Card.Text>

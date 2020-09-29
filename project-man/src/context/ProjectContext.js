@@ -1,12 +1,9 @@
 import React, { useEffect, useContext, useState } from "react";
 import ProjectData from "../data/ProjectData.json";
+
 import EmployeeData from "../data/EmployeeData.json";
 import ClientData from "../data/ClientData.json";
-export const ProjectContext = React.createContext(
-  ProjectData,
-  EmployeeData,
-  ClientData
-);
+export const ProjectContext = React.createContext();
 
 const ProjectContextProvider = ({ children }) => {
   const [projects, setProjects] = useState(ProjectData);

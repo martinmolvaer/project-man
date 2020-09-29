@@ -24,11 +24,7 @@ const ProjectCard = ({ project }) => {
           <Card.Text>{project.description}</Card.Text>
           <Card.Subtitle>{project.position}</Card.Subtitle>
         </Card.Body>
-        <Card.Footer>
-          {project.status}
-          <br></br>
-          Employees: {project.project_employees}
-        </Card.Footer>
+        <Card.Footer>{project.status}</Card.Footer>
       </Card>
     </Link>
   );
