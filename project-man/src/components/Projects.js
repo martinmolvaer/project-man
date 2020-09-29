@@ -6,6 +6,7 @@ import { ProjectContext } from "../context/ProjectContext";
 
 const Projects = () => {
   const { projects, addProject } = useContext(ProjectContext);
+
   const [newProject, setNewProject] = useState({
     name: "",
     status: "",
@@ -109,8 +110,9 @@ const Projects = () => {
       <Container style={{ maxWidth: "1280px" }}>
         <Row style={{ display: "flex", justifyContent: "center" }}>
           {projects.map((project) => {
-            return <ProjectCard project={project} />;
+            return <ProjectCard project={project}/>;
           })}
+
         </Row>
       </Container>
     </div>

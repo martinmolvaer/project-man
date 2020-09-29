@@ -2,7 +2,8 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, employee }) => {
+
   return (
     <Link
       style={{ color: "black", textDecoration: "none" }}
@@ -27,7 +28,6 @@ const ProjectCard = ({ project }) => {
         <Card.Footer>
           {project.status}
           <br></br>
-          Employees: {project.project_employees}
         </Card.Footer>
       </Card>
     </Link>

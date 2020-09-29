@@ -4,10 +4,16 @@ import { Row, Col, Card, Button, Form, Modal } from "react-bootstrap";
 import { ProjectContext } from "../context/ProjectContext";
 import { ArrowLeft } from "react-feather";
 import { Link } from "react-router-dom";
-import Employees from "./Employees";
 
 const ProjectDetail = () => {
   const { projects } = useContext(ProjectContext);
+  const { employees, addEmployee } = useContext(ProjectContext);
+
+  const [newProjectEmployee, setNewProjectEmployee] = useState({
+    first_name: "",
+    last_name: "",
+    id: "",
+  });
 
   const [show, setShow] = useState(false);
 
@@ -18,7 +24,15 @@ const ProjectDetail = () => {
 
   const project = projects.filter((detail) => detail.id === Number(id))[0];
 
-  console.log(project);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewProjectEmployee({ ...newProjectEmployee, [name]: value });
+  };
+
+  const addEmployeeToProject = () => {
+    setShow(false);
+    addEmployee({ ...newProjectEmployee });
+  };
 
   return (
     <Row>
@@ -35,20 +49,39 @@ const ProjectDetail = () => {
               Description: <br></br>
               {project.description}
             </Card.Text>
-            <Card.Text>Employees: </Card.Text>
+            <Card.Text>
+              Employees:
+              {project.employeeId.map((employee) => {
+                const projectEmployee = employees.filter(
+                  (detail) => detail.id === employee
+                )[0];
+                return <li>{projectEmployee.first_name} {projectEmployee.last_name}</li>;
+              })}
+            </Card.Text>
             <Button onClick={handleShow}>Add employee to project</Button>
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Add project</Modal.Title>
+                <Modal.Title>Add employee to project</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Form>
                   <Form.Group controlId="formBasicText">
                     <Form.Control
+                      onChange={handleChange}
+                      as="select"
+                      multiple
                       name="name"
                       type="text"
                       placeholder="Employee name"
-                    ></Form.Control>
+                    >
+                      {employees.map((employee) => {
+                        return (
+                          <option>
+                            {employee.first_name} {employee.last_name}
+                          </option>
+                        );
+                      })}
+                    </Form.Control>
                   </Form.Group>
                 </Form>
               </Modal.Body>
@@ -56,7 +89,9 @@ const ProjectDetail = () => {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="primary">Add employee</Button>
+                <Button variant="primary" onClick={addEmployeeToProject}>
+                  Add employee
+                </Button>
               </Modal.Footer>
             </Modal>
           </Card.Body>
