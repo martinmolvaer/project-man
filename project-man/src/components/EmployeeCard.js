@@ -4,14 +4,10 @@ import { ProjectContext } from "../context/ProjectContext";
 
 const EmployeeCard = ({ employee, project }) => {
   const { projects } = useContext(ProjectContext);
-
+  console.log(employee);
   return (
     <div>
-      {project.employeeId === employee.id && (
-        <li style={{ listStyleType: "square" }}>
-          {employee.first_name + " " + employee.last_name}
-        </li>
-      )}
+      {/* <li style={{ listStyleType: "square" }}>{employee.first_name}</li> */}
     </div>
   );
 };

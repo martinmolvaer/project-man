@@ -7,37 +7,28 @@ import { Link } from "react-router-dom";
 import EmployeeCard from "./EmployeeCard";
 
 const ProjectDetail = () => {
-  const { projects } = useContext(ProjectContext);
+  const { projects, addEmployeeToProject } = useContext(ProjectContext);
   const { employees, addEmployee } = useContext(ProjectContext);
-  const [newEmployee, setNewEmployee] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    position: "",
-  });
+  const [newEmployeeId, setNewEmployeeId] = useState();
+  let { id } = useParams();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewEmployee({ ...newEmployee, [name]: value });
+    const { value } = e.target;
+    setNewEmployeeId(value);
+    console.log(value);
   };
 
   const addNewEmployee = () => {
     setShow(false);
-    addEmployee({
-      ...newEmployee,
-      id: Math.floor(Math.random() * 100),
-    });
+    addEmployeeToProject(Number(id), Number(newEmployeeId));
   };
 
   const [show, setShow] = useState(false);
-
-  let { id } = useParams();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const project = projects.filter((detail) => detail.id === Number(id))[0];
-  const employee = employees.filter((detail) => detail.id === Number(id))[0];
 
   console.log(project);
 
@@ -57,8 +48,13 @@ const ProjectDetail = () => {
             <br></br>
             <Card.Text>
               <Card.Title>Employees:</Card.Title>
-              {employees.map((employee) => {
-                return <EmployeeCard employee={employee} project={project} />;
+              {project.employeeId.map((employee) => {
+                const projectEmployee = employees.filter(
+                  (detail) => detail.id === employee
+                )[0];
+                return (
+                  <EmployeeCard employee={projectEmployee} project={project} />
+                );
               })}
             </Card.Text>
             <Button
@@ -84,7 +80,11 @@ const ProjectDetail = () => {
                     >
                       {" "}
                       {employees.map((employee) => {
-                        return <option>{employee.first_name}</option>;
+                        return (
+                          <option value={employee.id}>
+                            {employee.first_name}
+                          </option>
+                        );
                       })}
                     </Form.Control>
                   </Form.Group>

@@ -20,6 +20,19 @@ const ProjectContextProvider = ({ children }) => {
     setEmployees((previousEmployee) => [newEmployee, ...previousEmployee]);
   };
 
+  const addEmployeeToProject = (projectId, employeeId) => {
+    const projectIndex = projects.findIndex((p) => p.id === projectId);
+
+    const myBestProject = [...projects];
+    const updatedBestProject = {
+      ...myBestProject[projectIndex],
+      employeeId: [...projects[projectIndex].employeeId, employeeId],
+    };
+    myBestProject[projectIndex] = updatedBestProject;
+
+    setProjects(myBestProject);
+  };
+
   return (
     <ProjectContext.Provider
       value={{
@@ -29,6 +42,7 @@ const ProjectContextProvider = ({ children }) => {
         addClient,
         employees,
         addEmployee,
+        addEmployeeToProject,
       }}
     >
       {children}

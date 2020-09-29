@@ -4,7 +4,7 @@
     "status": "In progress",
     "description": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
     "customerId": 1,
-    "employeeId": 1
+    "employeeId": [1, 4]
   },
   {
     "id": 2,
@@ -12,7 +12,7 @@
     "status": "Done",
     "description": "Sed sagittis.",
     "customerId": 2,
-    "employeeId": 2
+    "employeeId": [2]
   },
   {
     "id": 3,
@@ -20,7 +20,7 @@
     "status": "Not Started",
     "description": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
     "customerId": 3,
-    "employeeId": 3
+    "employeeId": [3]
   },
   {
     "id": 4,
@@ -28,7 +28,7 @@
     "status": "Done",
     "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
     "customerId": 4,
-    "employeeId": 4
+    "employeeId": [4]
   },
   {
     "id": 5,
@@ -36,7 +36,7 @@
     "status": "In Progress",
     "description": "In quis justo. Maecenas rhoncus aliquam lacus.",
     "customerId": 5,
-    "employeeId": 5
+    "employeeId": [5]
   },
   {
     "id": 6,
@@ -44,7 +44,7 @@
     "status": "Not Started",
     "description": "Aliquam erat volutpat. In congue.",
     "customerId": 6,
-    "employeeId": 6
+    "employeeId": [6]
   },
   {
     "id": 7,
@@ -52,7 +52,7 @@
     "status": "In Progress",
     "description": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
     "customerId": 7,
-    "employeeId": 7
+    "employeeId": [7]
   },
   {
     "id": 8,
@@ -60,22 +60,22 @@
     "status": "Done",
     "description": "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "customerId": 8,
-    "employeeId": 8
-  },
-  {
+    "employeeId": [8]
+
+  }, {
     "id": 9,
     "name": "Home Ing",
     "status": "In progress",
     "description": "Duis at velit eu est congue elementum.",
     "customerId": 9,
-    "employeeId": 9
-  },
-  {
+    "employeeId": [9]
+
+  }, {
     "id": 10,
     "name": "Quo Lux",
     "status": "Not Started",
     "description": "Quisque ut erat. Curabitur gravida nisi at nibh.",
     "customerId": 10,
-    "employeeId": 10
+    "employeeId": [10]
   }
 ]
