@@ -17,30 +17,30 @@ export default () => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link>
+          
             <Link
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ marginRight: "1rem", textDecoration: "none", color: "black" }}
               to="/projects"
             >
-              Projects
+              Projects 
             </Link>
-          </Nav.Link>
-          <Nav.Link>
+          
+          
             <Link
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ marginRight: "1rem", textDecoration: "none", color: "black" }}
               to="/clients"
             >
-              Clients
+              Clients 
             </Link>
-          </Nav.Link>
-          <Nav.Link>
+          
+          
             <Link
-              style={{ textDecoration: "none", color: "black" }}
+              style={{  marginRight: "1rem", textDecoration: "none", color: "black" }}
               to="/employees"
             >
-              Employees
+              Employees 
             </Link>
-          </Nav.Link>
+          
         </Nav>
       </Navbar.Collapse>
     </Navbar>

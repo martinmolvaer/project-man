@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, {useState } from "react";
 import ProjectData from "../data/ProjectData.json";
 
 import EmployeeData from "../data/EmployeeData.json";

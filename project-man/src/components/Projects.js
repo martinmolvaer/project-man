@@ -1,7 +1,13 @@
 import React, { useState, useContext } from "react";
-
-import { useParams } from "react-router-dom";
-import { Row, Container, Form, Modal, Button, Toast } from "react-bootstrap";
+import {
+  Row,
+  Container,
+  Form,
+  Modal,
+  Button,
+  Toast,
+  Badge,
+} from "react-bootstrap";
 import ProjectCard from "./ProjectCard";
 import { ProjectContext } from "../context/ProjectContext";
 
@@ -37,7 +43,10 @@ const Projects = () => {
   return (
     <div>
       <div>
-        <h3 style={{ margin: "1rem", textAlign: "center" }}>Projects</h3>
+        <h3 style={{ margin: "1rem", textAlign: "center" }}>
+          Projects
+          <Badge variant="secondary" style={{marginLeft: "0.5rem"}}>{projects.length}</Badge>
+        </h3>
         <div style={{ position: "absolute", paddingLeft: "1rem" }}>
           <Toast
             delay={3000}
@@ -111,10 +120,9 @@ const Projects = () => {
 
       <Container style={{ maxWidth: "1280px" }}>
         <Row style={{ display: "flex", justifyContent: "center" }}>
-          {projects.map((project) => {
-            return <ProjectCard project={project}/>;
+          {projects.map((project, i) => {
+            return <ProjectCard key={i} project={project} />;
           })}
-
         </Row>
       </Container>
     </div>

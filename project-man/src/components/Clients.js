@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import { Table, Row, Form, Button, Modal } from "react-bootstrap";
+import { Table, Row, Form, Button, Modal, Badge } from "react-bootstrap";
 import { ProjectContext } from "../context/ProjectContext";
 
 const Clients = () => {
@@ -11,6 +11,7 @@ const Clients = () => {
     contact_person: "",
     email: "",
   });
+  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -36,7 +37,8 @@ const Clients = () => {
   return (
     <div>
       <div>
-        <h3 style={{ margin: "1rem", textAlign: "center" }}>Clients</h3>
+        <h3 style={{ margin: "1rem", textAlign: "center" }}>Clients
+        <Badge variant="secondary" style={{marginLeft: "0.5rem"}}>{clients.length}</Badge></h3>
       </div>
 
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -59,8 +61,8 @@ const Clients = () => {
                 onChange={handleChange}
                 name="name"
                 type="text"
-                placeholder="Client"
-              />
+                placeholder="Client">
+                  </Form.Control>
             </Form.Group>
 
             <Form.Group controlId="formBasicText">
@@ -114,7 +116,6 @@ const Clients = () => {
           })}
         </Table>
       </Row>
-      <p># of clients: {clients.length}</p>
     </div>
   );
 };

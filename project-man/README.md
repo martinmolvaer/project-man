@@ -7,7 +7,7 @@ Per-Kristian Vinje og Martin Molvær
 [X]-Vise oversikt over alle kunder
 [X] -Vise alle prosjekter og status på dem
 [X]Legge til prosjekt
--Legge til ansatte på prosjekt
+[X]-Legge til ansatte på prosjekt
 [X]Vise et bestemt prosjekt
 
 1.  Grid-systemet i React Bootstrap for å tilpasse til mobil, tablet og laptop-størrelser

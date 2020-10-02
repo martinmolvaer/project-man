@@ -8,14 +8,13 @@ import EmployeeCard from "./EmployeeCard";
 
 const ProjectDetail = () => {
   const { projects, addEmployeeToProject } = useContext(ProjectContext);
-  const { employees, addEmployee } = useContext(ProjectContext);
+  const { employees } = useContext(ProjectContext);
   const [newEmployeeId, setNewEmployeeId] = useState("");
   let { id } = useParams();
 
   const handleChange = (e) => {
     const { value } = e.target;
     setNewEmployeeId(value);
-    console.log(value);
   };
 
   const addNewEmployee = () => {
@@ -31,8 +30,6 @@ const ProjectDetail = () => {
 
   const project = projects.filter((detail) => detail.id === Number(id))[0];
 
-  console.log(project);
-
   return (
     <Row>
       <Col style={{ display: "flex", justifyContent: "center" }}>
@@ -47,21 +44,22 @@ const ProjectDetail = () => {
             <Card.Title>Description:</Card.Title>
             <Card.Text>{project.description}</Card.Text>
             <br></br>
-            <Card.Text>
-              <Card.Title>Employees:</Card.Title>
-              {project.employeeId.length > 0 &&
-                project.employeeId.map((employee) => {
-                  const projectEmployee = employees.filter(
-                    (detail) => detail.id === employee
-                  )[0];
-                  return (
-                    <EmployeeCard
-                      employee={projectEmployee}
-                      project={project}
-                    />
-                  );
-                })}
-            </Card.Text>
+
+            <Card.Title>Employees:</Card.Title>
+            {project.employeeId.length > 0 &&
+              project.employeeId.map((employee, i) => {
+                const projectEmployee = employees.filter(
+                  (detail) => detail.id === employee
+                )[0];
+                return (
+                  <EmployeeCard
+                    key={i}
+                    employee={projectEmployee}
+                    project={project}
+                  />
+                );
+              })}
+            <br></br>
             <Button
               style={{ border: "2px solid black" }}
               variant="light"
@@ -86,9 +84,9 @@ const ProjectDetail = () => {
                       <option selected disabled>
                         Velg en ansatt
                       </option>{" "}
-                      {employees.map((employee) => {
+                      {employees.map((employee, i) => {
                         return (
-                          <option value={employee.id}>
+                          <option key={i} value={employee.id}>
                             {employee.first_name}
                           </option>
                         );
@@ -101,7 +99,7 @@ const ProjectDetail = () => {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="primary" onClick={addNewEmployee}>
+                <Button variant="primary" type="submit" onClick={addNewEmployee}>
                   Add employee
                 </Button>
               </Modal.Footer>

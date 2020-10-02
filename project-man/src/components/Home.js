@@ -91,7 +91,7 @@ const Home = () => {
                     <Card.Text>Full overview over all employees</Card.Text>
                     <User />
                   </Card.Body>
-                  <Card.Footer>
+                  <Card.Footer >
                     <ArrowRight />
                   </Card.Footer>
                 </Card>

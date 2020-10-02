@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 
 import { ProjectContext } from "../context/ProjectContext";
 
-import { Card, Row, Container, Modal, Form, Button } from "react-bootstrap";
+import { Card, Row, Container, Modal, Form, Button, Badge } from "react-bootstrap";
 
 const Employees = () => {
   const { employees, addEmployee } = useContext(ProjectContext);
@@ -30,7 +30,12 @@ const Employees = () => {
   return (
     <div>
       <div>
-        <h3 style={{ margin: "1rem", textAlign: "center" }}>Employees</h3>
+        <h3 style={{ margin: "1rem", textAlign: "center" }}>
+          Employees
+          <Badge variant="secondary" style={{ marginLeft: "0.5rem" }}>
+            {employees.length}
+          </Badge>
+        </h3>
       </div>
 
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -89,7 +94,7 @@ const Employees = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={addNewEmployee}>
+          <Button variant="primary" type="submit" onClick={addNewEmployee}>
             Add employee
           </Button>
         </Modal.Footer>
@@ -97,10 +102,10 @@ const Employees = () => {
 
       <Container style={{ maxWidth: "1280px" }}>
         <Row style={{ display: "flex", justifyContent: "center" }}>
-          {employees.map((employee) => {
+          {employees.map((employee, i) => {
             return (
-              <Card
-                className="cardeffect"
+              <Card key={i}
+                className="card"
                 style={{
                   width: "18rem",
                   marginRight: "1rem",
