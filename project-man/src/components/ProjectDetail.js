@@ -15,9 +15,19 @@ const ProjectDetail = () => {
     id: "",
   });
 
-  const [show, setShow] = useState(false);
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setNewEmployeeId(value);
+    console.log(value);
+  };
 
-  let { id } = useParams();
+  const addNewEmployee = () => {
+    if (!newEmployeeId) return;
+    setShow(false);
+    addEmployeeToProject(Number(id), Number(newEmployeeId));
+  };
+
+  const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -37,7 +47,7 @@ const ProjectDetail = () => {
   return (
     <Row>
       <Col style={{ display: "flex", justifyContent: "center" }}>
-        <Card style={{ width: "600px", marginTop: "5rem", height: "300px" }}>
+        <Card style={{ width: "600px", marginTop: "5rem" }}>
           <Card.Title style={{ marginLeft: "1,5rem", marginTop: "1rem" }}>
             <Link to="/projects">
               <ArrowLeft style={{ marginLeft: "1rem", marginRight: "1rem" }} />
@@ -45,9 +55,23 @@ const ProjectDetail = () => {
             Project Name: {project.name}{" "}
           </Card.Title>
           <Card.Body>
+            <Card.Title>Description:</Card.Title>
+            <Card.Text>{project.description}</Card.Text>
+            <br></br>
             <Card.Text>
-              Description: <br></br>
-              {project.description}
+              <Card.Title>Employees:</Card.Title>
+              {project.employeeId.length > 0 &&
+                project.employeeId.map((employee) => {
+                  const projectEmployee = employees.filter(
+                    (detail) => detail.id === employee
+                  )[0];
+                  return (
+                    <EmployeeCard
+                      employee={projectEmployee}
+                      project={project}
+                    />
+                  );
+                })}
             </Card.Text>
             <Card.Text>
               Employees:

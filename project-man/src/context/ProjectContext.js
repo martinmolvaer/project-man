@@ -1,12 +1,9 @@
 import React, { useEffect, useContext, useState } from "react";
 import ProjectData from "../data/ProjectData.json";
+
 import EmployeeData from "../data/EmployeeData.json";
 import ClientData from "../data/ClientData.json";
-export const ProjectContext = React.createContext(
-  ProjectData,
-  EmployeeData,
-  ClientData
-);
+export const ProjectContext = React.createContext();
 
 const ProjectContextProvider = ({ children }) => {
   const [projects, setProjects] = useState(ProjectData);
@@ -23,6 +20,19 @@ const ProjectContextProvider = ({ children }) => {
     setEmployees((previousEmployee) => [newEmployee, ...previousEmployee]);
   };
 
+  const addEmployeeToProject = (projectId, employeeId) => {
+    const projectIndex = projects.findIndex((p) => p.id === projectId);
+
+    const myBestProject = [...projects];
+    const updatedBestProject = {
+      ...myBestProject[projectIndex],
+      employeeId: [...projects[projectIndex].employeeId, employeeId],
+    };
+    myBestProject[projectIndex] = updatedBestProject;
+
+    setProjects(myBestProject);
+  };
+
   return (
     <ProjectContext.Provider
       value={{
@@ -32,6 +42,7 @@ const ProjectContextProvider = ({ children }) => {
         addClient,
         employees,
         addEmployee,
+        addEmployeeToProject,
       }}
     >
       {children}

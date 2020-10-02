@@ -52,7 +52,7 @@
     "status": "In Progress",
     "description": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
     "customerId": 7,
-    "employeeId": 7
+    "employeeId": [7]
   },
   {
     "id": 8,
@@ -60,22 +60,22 @@
     "status": "Done",
     "description": "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "customerId": 8,
-    "employeeId": 8
-  },
-  {
+    "employeeId": [8]
+
+  }, {
     "id": 9,
     "name": "Home Ing",
     "status": "In progress",
     "description": "Duis at velit eu est congue elementum.",
     "customerId": 9,
-    "employeeId": 9
-  },
-  {
+    "employeeId": [9]
+
+  }, {
     "id": 10,
     "name": "Quo Lux",
     "status": "Not Started",
     "description": "Quisque ut erat. Curabitur gravida nisi at nibh.",
     "customerId": 10,
-    "employeeId": 10
+    "employeeId": [10]
   }
 ]
